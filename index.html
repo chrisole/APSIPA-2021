@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="ftFOlJETX-2KNjaPh8W6s8lhigItRuu9fOmjHZZ0nY0" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <title>Learning Disentangled Feature Representations for Speech Enhancement via Adversarial Training</title>
+</head>
+<style type="text/css">
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  audio {
+    width: 100%;
+  }
+
+  thead>tr>th:first-child {
+    width: 96px;
+  }
+
+  @media (max-width: 767px) {
+    .big-screen {
+      display: none;
+    }
+  }
+
+  @media (min-width: 767px) {
+    .small-screen {
+      display: none;
+    }
+  }
+</style>
+
+<body>
+  <header class="header">
+    <div class="jumbotron bg-secondary text-center">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <h1><a class="text-light"
+                href="">Attentive Multi-scale Time Domain Speech Enhancement</a></h1>
+            <p>
+              <div class="row">
+                <div class="col-md col-sm-12"><a class="text-light"
+                    href="">Chen Chen</a> </div>
+                <div class="col-md col-sm-12"><a class="text-light"
+                    href="">Nana Hou</a> </div>
+                <div class="col-md col-sm-12"><a class="text-light"
+                    href="">Ma Duo</a> </div>
+                <div class="col-md col-sm-12"><a class="text-light"
+                    href="https://scholar.google.com/citations?user=FJodrCcAAAAJ&hl=en">Eng Siong Chng</a> </div>
+              </div>
+            </p>
+            <p><a class="text-light">School of Computer Science and Engineering, Nanyang Technological University, Singapore<br>
+              Department of Electrical and Computer Engineering, National University of Singapore, Singapore<br>
+               </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="row" id="intro">
+        <div class="col">
+          <h2>Speech Enhancement</h2>
+          <div>
+            <p>Speech enhancement technique aims to suppress additive noises in given noisy speech signals 
+              to improve speech quality and intelligibility.</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row" id="monolingual">
+        <div class="col">
+          <h2>Attentive Multi-scale Time Domain Speech Enhancement (AMS-SE)</h2>
+          <div>
+            <p> Speech enhancement aims to suppress the additive noise from noisy speech signals to improve the speech quality.
+              It is believed that multi-scale temporal information learned from the speech inputs strengthens the mask prediction or noise suppression especially for the encoder-mask-decoder like structure in time-domain speech enhancement techniques.
+              In this paper, we propose a multi-scale encoding and decoding scheme that captures multiple temporal resolutions for improved speech quality.
+              We also propose a attention module to capture the global temporal information of each-scale embedding through the encoding.
+              Experiments show that the proposed approach achieves 9.0% and 2.9% relative improvements over the best baseline in terms of perceptual evaluation of the speech quality (PESQ) and signal-to-distortion ratio (SDR), respectively.
+              Furthermore, the ablation study indicates that the proposed attentive module is significantly effective for the feature embedding.
+          </div>
+        </div>
+      </div>
+      <hr>
+      
+      <div class="row" id="result">
+        <div class="col-md-12">
+          <h2>Speech Samples</h2>
+          <p>The model is evaluated with speech from the public dataset.<a class="text-success" href="#3">[1]</a><p>
+            <p style="color:red;">Please put on your earphones when linstening to these samples.</p>
+                  <div class="big-screen">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>           </th>
+                          <th>Noisy</th>
+                          <th>Best Baseline</th>
+                          <th>Proposed AMS-SE</th>
+                          <th>Clean</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">p232_023</th>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/noisy/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/baseline/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/dfl-se/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/clean/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">p232_029</th>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/noisy/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/baseline/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/dfl-se/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/clean/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      </tr>
+                        <tr>
+                        <tr>
+                          <th scope="row">p232_041</th>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/noisy/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/baseline/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/dfl-se/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/clean/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <tr>
+                            <th scope="row">p257_143</th>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/noisy/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/baseline/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/dfl-se/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/clean/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <tr>
+                              <th scope="row">p257_252</th>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/noisy/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/baseline/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/dfl-se/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/clean/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                            </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="small-screen">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>           </th>
+                          <th>Narrowband</th>
+                          <th>TFNet Best Baseline<a class="text-success" href="#3">[2]</a></th>
+                          <th>Proposed SPA-RDPN</th>
+                          <th>Wideband</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">p232_023</th>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/noisy/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/baseline/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/dfl-se/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/clean/p232_023.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">p232_029</th>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/noisy/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/baseline/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/dfl-se/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/clean/p232_029.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      </tr>
+                        <tr>
+                        <tr>
+                          <th scope="row">p232_041</th>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/noisy/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/baseline/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/dfl-se/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls controlsList="nodownload">
+                              <source src="./audio/clean/p232_041.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <tr>
+                            <th scope="row">p257_143</th>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/noisy/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/baseline/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/dfl-se/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                            <td>
+                              <audio controls controlsList="nodownload">
+                                <source src="./audio/clean/p257_143.wav" type="audio/wav" />
+                                Your browser does not support the audio element.
+                              </audio>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <tr>
+                              <th scope="row">p257_252</th>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/noisy/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/baseline/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/dfl-se/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>
+                                <audio controls controlsList="nodownload">
+                                  <source src="./audio/clean/p257_252.wav" type="audio/wav" />
+                                  Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                            </tr>
+
+
+                      </tbody>
+                    </table>
+                  </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row" id="ref">
+        <div class="col">
+          <h2>References</h2>
+          <div>
+            <p>
+              <a name="1">[1]</a>
+              Chenglin Xu, Wei Rao, Eng Siong Chng, Haizhou L.<a class="text-success"
+                href="https://ieeexplore.ieee.org/abstract/document/9067003">“Spex: Multi-scale time domain speaker extraction network.</a>,”
+                in <em>IEEE/ACM transactions on audio, speech, and language processing, 2020, 28: 1370-1384.</em>
+            </p>
+            <p>
+              <a name="2">[2]</a>
+              Luo, Yi and Mesgarani, Nima. <a class="text-success"
+                href="http://isle.illinois.edu/sst/pubs/2018/lim18icassp.pdf">“Conv-tasnet: Surpassing ideal time--frequency magnitude masking for speech separation.</a>,” 
+                in <em>2019 ICASSP (pp. 1256--1266). IEEE.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- <div class="row" id="contact">
+          <div class="col">
+            <h2>Contact</h2>
+            <div></div>
+          </div>
+        </div> -->
+    </div>
+  </main>
+  <footer class="bg-secondary text-light mt-4 pt-3 pb-2 ">
+    <div class="container">
+      <p class="text-center">
+        <small>
+          Speech Enhancement
+          <br>
+          Learning Disentangled Feature Representations <br> for Speech Enhancement via Adversarial Training
+          <br>
+          <a href="" class="text-light"><strong>Nana Hou</strong></a> |
+          nana001@e.ntu.edu.sg
+        </small>
+      </p>
+    </div>
+  </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
